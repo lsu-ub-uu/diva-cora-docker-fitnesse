@@ -23,39 +23,24 @@
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent</artifactId>
-		<version>0.6-SNAPSHOT</version>
+		<version>0.7-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>diva-cora-docker-fitnesse</artifactId>
 	<packaging>pom</packaging>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.2-SNAPSHOT</version>
 	<name>The DiVA Fitnesse docker</name>
 
 	<properties>
 		<outputDirectory>${project.build.directory}/docker2</outputDirectory>
-		<divacorafitnesse.version>0.1-SNAPSHOT</divacorafitnesse.version>
+		<divacorafitnesse.version>0.2-SNAPSHOT</divacorafitnesse.version>
 	</properties>
 
 	<scm>
-		<connection>scm:git:https://git.epc.ub.uu.se/epc/diva-cora-docker-fitnesse.git</connection>
-		<developerConnection>scm:git:https://git.epc.ub.uu.se/epc/diva-cora-docker-fitnesse.git</developerConnection>
-		<url>https://git.epc.ub.uu.se/epc/diva-cora-docker-fitnesse.git</url>
+		<connection>scm:git:https://github.com/lsu-ub-uu/diva-cora-docker-fitnesse.git</connection>
+		<developerConnection>scm:git:https://github.com/lsu-ub-uu/diva-cora-docker-fitnesse.git</developerConnection>
+		<url>https://github.com/lsu-ub-uu/diva-cora-docker-fitnesse.git</url>
 	</scm>
-
-	<repositories>
-		<repository>
-			<id>maven-public</id>
-			<name>LSU Nexus Repository</name>
-			<url>http://epc.ub.uu.se/nexus/repository/maven-public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<updatePolicy>daily</updatePolicy>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -93,7 +78,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.1.1</version>
 				<executions>
 					<execution>
 						<id>copy-dependencies</id>
@@ -102,7 +87,6 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-<!-- 							<outputDirectory>${project.build.directory}/docker</outputDirectory> -->
 							<outputDirectory>${outputDirectory}</outputDirectory>
 							<excludeArtifactIds>basicstorage</excludeArtifactIds>
 							<overWriteReleases>true</overWriteReleases>
@@ -126,7 +110,6 @@
 									<version>${divacorafitnesse.version}</version>
 									<type>jar</type>
 									<overWrite>true</overWrite>
-<!-- 									<outputDirectory>${project.build.directory}/docker</outputDirectory> -->
 									<outputDirectory>${outputDirectory}</outputDirectory>
 									<includes>FitNesseRoot/**</includes>
 								</artifactItem>
@@ -137,26 +120,6 @@
 					</execution>
 				</executions>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>com.spotify</groupId> -->
-<!-- 				<artifactId>docker-maven-plugin</artifactId> -->
-<!-- 				<version>0.4.13</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>build-image</id> -->
-<!-- 						<phase>package</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>build</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 				<configuration> -->
-<!-- 					<imageName>diva-docker-fitnesse</imageName> -->
-<!-- 					<dockerDirectory>docker</dockerDirectory> -->
-<!-- 					<resources> -->
-<!-- 					</resources> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
