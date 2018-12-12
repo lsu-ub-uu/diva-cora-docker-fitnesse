@@ -23,17 +23,17 @@
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent</artifactId>
-		<version>0.8-SNAPSHOT</version>
+		<version>0.8.6</version>
 	</parent>
 
 	<artifactId>diva-cora-docker-fitnesse</artifactId>
 	<packaging>pom</packaging>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.3.0-SNAPSHOT</version>
 	<name>The DiVA Fitnesse docker</name>
 
 	<properties>
 		<outputDirectory>${project.build.directory}/docker2</outputDirectory>
-		<divacorafitnesse.version>0.3-SNAPSHOT</divacorafitnesse.version>
+		<divacorafitnesse.version>0.3.0</divacorafitnesse.version>
 	</properties>
 
 	<scm>
