@@ -1,4 +1,4 @@
-FROM  openjdk:10-jre-slim
+FROM  openjdk:11-jre-slim
 
 COPY /divacorafitnesse.jar /fitnesse/
 COPY /FitNesseRoot /fitnesse/FitNesseRoot
