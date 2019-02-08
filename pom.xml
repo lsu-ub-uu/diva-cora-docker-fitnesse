@@ -32,7 +32,7 @@
 
 	<properties>
 		<outputDirectory>${project.build.directory}/docker2</outputDirectory>
-		<divacorafitnesse.version>0.4.1</divacorafitnesse.version>
+		<divacorafitnesse.version>0.5.0</divacorafitnesse.version>
 	</properties>
 
 	<scm>
