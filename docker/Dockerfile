@@ -1,4 +1,4 @@
-FROM  adoptopenjdk:12-jdk-hotspot
+FROM  openjdk:14-jdk-alpine
 
 COPY /divacorafitnesse.jar /fitnesse/
 COPY /FitNesseRoot /fitnesse/FitNesseRoot
