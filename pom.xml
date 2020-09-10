@@ -1,28 +1,22 @@
-<!--
-  ~ Copyright 2018 Uppsala University Library
-  ~
-  ~ This file is part of Cora.
-  ~
-  ~     Cora is free software: you can redistribute it and/or modify
-  ~     it under the terms of the GNU General Public License as published by
-  ~     the Free Software Foundation, either version 3 of the License, or
-  ~     (at your option) any later version.
-  ~
-  ~     Cora is distributed in the hope that it will be useful,
-  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~     GNU General Public License for more details.
-  ~
-  ~     You should have received a copy of the GNU General Public License
-  ~     along with Cora.  If not, see <http://www.gnu.org/licenses />.
-  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- ~ Copyright 2018 Uppsala University Library ~ ~ This file is part of 
+	Cora. ~ ~ Cora is free software: you can redistribute it and/or modify ~ 
+	it under the terms of the GNU General Public License as published by ~ the 
+	Free Software Foundation, either version 3 of the License, or ~ (at your 
+	option) any later version. ~ ~ Cora is distributed in the hope that it will 
+	be useful, ~ but WITHOUT ANY WARRANTY; without even the implied warranty 
+	of ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the ~ GNU General 
+	Public License for more details. ~ ~ You should have received a copy of the 
+	GNU General Public License ~ along with Cora. If not, see <http://www.gnu.org/licenses 
+	/>. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent</artifactId>
-		<version>1.0.2</version>
+		<version>1.1.1</version>
 	</parent>
 
 	<artifactId>diva-cora-docker-fitnesse</artifactId>
@@ -31,7 +25,10 @@
 	<name>The DiVA Fitnesse docker</name>
 
 	<properties>
+		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<outputDirectory>${project.build.directory}/docker2</outputDirectory>
+
+		<cora-docker-java.version>1.0.0</cora-docker-java.version>
 		<divacorafitnesse.version>1.1-SNAPSHOT</divacorafitnesse.version>
 	</properties>
 
@@ -39,10 +36,17 @@
 		<connection>scm:git:https://github.com/lsu-ub-uu/diva-cora-docker-fitnesse.git</connection>
 		<developerConnection>scm:git:https://github.com/lsu-ub-uu/diva-cora-docker-fitnesse.git</developerConnection>
 		<url>https://github.com/lsu-ub-uu/diva-cora-docker-fitnesse.git</url>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 
 	<dependencies>
+		<dependency>
+			<groupId>se.uu.ub.cora</groupId>
+			<artifactId>cora-docker-java</artifactId>
+			<version>${cora-docker-java.version}</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>
 			<artifactId>divacorafitnesse</artifactId>
@@ -53,8 +57,8 @@
 
 	<build>
 		<plugins>
-<!-- 		new -->
-		<plugin>
+			<!-- new -->
+			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
@@ -74,7 +78,7 @@
 					</execution>
 				</executions>
 			</plugin>
-<!-- 			end new -->
+			<!-- end new -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -121,20 +125,31 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${exec-maven-plugin.version}</version>
 				<executions>
 					<execution>
-						<id>default</id>
+						<id>docker-build</id>
+						<phase>install</phase>
 						<goals>
-							<goal>build</goal>
+							<goal>exec</goal>
 						</goals>
+						<configuration>
+							<executable>docker</executable>
+							<!-- <workingDirectory>${project.basedir}</workingDirectory> -->
+							<workingDirectory>${outputDirectory}</workingDirectory>
+							<arguments>
+								<argument>build</argument>
+								<argument>-t</argument>
+								<argument>${project.artifactId}:${project.version}</argument>
+								<argument>--build-arg</argument>
+								<argument>CORA_DOCKER_VERSION=${cora-docker-java.version}</argument>
+								<argument>.</argument>
+							</arguments>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<contextDirectory>${outputDirectory}</contextDirectory>
-					<repository>diva-docker-fitnesse</repository>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

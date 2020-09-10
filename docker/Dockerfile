@@ -1,4 +1,5 @@
-FROM  adoptopenjdk:12-jdk-hotspot
+ARG CORA_DOCKER_VERSION
+FROM cora-docker-java:${CORA_DOCKER_VERSION}
 
 COPY /divacorafitnesse.jar /fitnesse/
 COPY /FitNesseRoot /fitnesse/FitNesseRoot
