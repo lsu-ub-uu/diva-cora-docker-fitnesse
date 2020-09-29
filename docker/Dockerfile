@@ -1,6 +1,8 @@
 ARG CORA_DOCKER_VERSION
 FROM cora-docker-java:${CORA_DOCKER_VERSION}
 
+ENV tokenLogoutURL setWhenDockerStarts
+
 COPY /divacorafitnesse.jar /fitnesse/
 COPY /FitNesseRoot /fitnesse/FitNesseRoot
 COPY /plugins.properties /fitnesse/
@@ -8,8 +10,8 @@ COPY /password.txt /fitnesse/
 
 WORKDIR /fitnesse
 
-CMD java -classpath /fitnesse/divacorafitnesse.jar  -DsystemUnderTestUrl="http://diva:8080/diva/" -DappTokenVerifierUrl="http://apptokenverifier:8080/apptokenverifier/" -DtokenLogoutURL="http://localhost:8080/apptokenverifier/rest/"  fitnesseMain.FitNesseMain -p 8090 -a /fitnesse/password.txt
-
+CMD java -classpath /fitnesse/divacorafitnesse.jar  -DsystemUnderTestUrl="http://diva:8080/diva/" -DappTokenVerifierUrl="http://apptokenverifier:8080/apptokenverifier/" -DidpLoginUrl="http://idplogin:8080/idplogin/" -DgatekeeperServerUrl="http://gatekeeper:8080/gatekeeperserver/" -DtokenLogoutURL="${tokenLogoutURL}"  fitnesseMain.FitNesseMain -p 8090 -a /fitnesse/password.txt
+ 
 #java -jar fitnesse-standalone.jar -p 8090 -o -a password.txt
 
 #build with:
