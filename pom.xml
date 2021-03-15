@@ -57,7 +57,6 @@
 
 	<build>
 		<plugins>
-			<!-- new -->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
@@ -78,7 +77,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- end new -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -137,7 +135,6 @@
 						</goals>
 						<configuration>
 							<executable>docker</executable>
-							<!-- <workingDirectory>${project.basedir}</workingDirectory> -->
 							<workingDirectory>${outputDirectory}</workingDirectory>
 							<arguments>
 								<argument>build</argument>
