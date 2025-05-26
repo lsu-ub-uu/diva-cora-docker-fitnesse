@@ -22,7 +22,7 @@
 	<name>The DiVA Fitnesse docker</name>
 
 	<properties>
-		<cora-docker-java.version>1.8.0</cora-docker-java.version>
+		<cora-docker-java.version>1.9.0</cora-docker-java.version>
 		<divacorafitnesse.version>1.15-SNAPSHOT</divacorafitnesse.version>
 		<!-- Override property so docker-build profile activates in this module -->
 		<docker.build.activate>true</docker.build.activate>
