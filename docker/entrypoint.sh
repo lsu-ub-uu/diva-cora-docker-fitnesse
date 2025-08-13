@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 : "${BASE_URL:-http://diva:8080/diva/}"
 : "${LOGIN_URL:-http://login:8080/login/}"
