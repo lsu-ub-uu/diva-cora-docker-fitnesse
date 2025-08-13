@@ -18,7 +18,7 @@
 
 	<artifactId>diva-cora-docker-fitnesse</artifactId>
 	<packaging>pom</packaging>
-	<version>1.8-SNAPSHOT</version>
+	<version>1.8.1-SNAPSHOT</version>
 	<name>The DiVA Fitnesse docker</name>
 
 	<properties>
