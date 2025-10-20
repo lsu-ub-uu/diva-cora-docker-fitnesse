@@ -13,7 +13,7 @@
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent-docker</artifactId>
-		<version>1.2.0</version>
+		<version>1.3.0</version>
 	</parent>
 
 	<artifactId>diva-cora-docker-fitnesse</artifactId>
@@ -22,7 +22,7 @@
 	<name>The DiVA Fitnesse docker</name>
 
 	<properties>
-		<cora-docker-java.version>1.9.0</cora-docker-java.version>
+		<cora-docker-java.version>1.10.0</cora-docker-java.version>
 		<divacorafitnesse.version>1.28.0</divacorafitnesse.version>
 		<!-- Override property so docker-build profile activates in this module -->
 		<docker.build.activate>true</docker.build.activate>
