@@ -23,7 +23,7 @@
 
 	<properties>
 		<cora-docker-java.version>1.10.0</cora-docker-java.version>
-		<divacorafitnesse.version>1.31.0</divacorafitnesse.version>
+		<divacorafitnesse.version>1.32.0</divacorafitnesse.version>
 		<!-- Override property so docker-build profile activates in this module -->
 		<docker.build.activate>true</docker.build.activate>
 	</properties>
